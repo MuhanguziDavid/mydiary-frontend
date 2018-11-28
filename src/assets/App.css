@@ -274,4 +274,12 @@ footer {
       border-radius: 10px;
       text-align: center;
   }
+  .login-menu h1 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    border-radius: 10px;
+    border-bottom: 1px solid #000;
+  }
 }

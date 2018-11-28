@@ -3,7 +3,7 @@ import Login from '../login/Login';
 import Register from '../register/Register';
 import '../../assets/App.css';
 
-const LandingPage = () => (
+const LandingPage = (props) => (
   <div className="signup">
     <div className="login-menu">
       <h1>My Diary</h1>
@@ -23,7 +23,7 @@ const LandingPage = () => (
 
       <div className="tab-content">
         <div className="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab"><Login /></div>
-        <div className="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab"><Register /></div>
+        <div className="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab"><Register {...props} /></div>
       </div>
     </div>
   </div>

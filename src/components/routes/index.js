@@ -6,9 +6,15 @@ import {
 import NotFound from '../notFound/NotFound';
 import LandingPage from '../landingPage/LandingPage';
 
+const LandingPageContainer = () => (
+  <div className="landing-page-container">
+    <Route exact path="/" component={LandingPage} />
+  </div>
+);
+
 const Routes = () => (
   <Switch>
-    <Route exact path="/" component={LandingPage} />
+    <Route component={LandingPageContainer} />
     <Route exact component={NotFound} />
   </Switch>
 );

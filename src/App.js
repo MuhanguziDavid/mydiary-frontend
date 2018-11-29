@@ -6,12 +6,14 @@ import Routes from './components/routes';
 import store from './store';
 import './assets/App.css';
 import Footer from './components/footer/Footer';
+import Navbar from './components/navbar/Navbar';
 
 const App = () => (
   <Provider store={store}>
     <BrowserRouter>
       <React.Fragment>
         <ToastContainer />
+        <Navbar />
         <Routes />
         <Footer />
       </React.Fragment>

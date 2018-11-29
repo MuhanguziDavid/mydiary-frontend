@@ -15,6 +15,7 @@ describe('Login component', () => {
     },
   });
   const loginUsers = jest.fn();
+  const setLoginToFalse = jest.fn();
   const props = {
     history: { push: jest.fn() },
   };
@@ -26,6 +27,7 @@ describe('Login component', () => {
     mockStore({});
     wrapper = shallow(<Login
       loginUsers={loginUsers}
+      setLoginToFalse={setLoginToFalse}
       {...props}
     />);
   });

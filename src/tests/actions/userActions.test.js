@@ -4,6 +4,7 @@ import configureMockStore from 'redux-mock-store';
 import {
   registerUsers,
   loginUsers,
+  setLoginToTrue,
 } from '../../actions/userActions';
 import {
   REGISTER_SUCCESS,
@@ -88,6 +89,16 @@ describe('userActions', () => {
     expect(store.getActions()).toEqual(
       [
         { type: LOGIN_ERROR, payload: true },
+      ],
+    );
+  });
+
+  it('should set login to true when setLoginToTrue ti called', async () => {
+    setLoginToTrue()(store.dispatch);
+    await flushAllPromises();
+    expect(store.getActions()).toEqual(
+      [
+        { type: LOGIN_SUCCESS, payload: true },
       ],
     );
   });

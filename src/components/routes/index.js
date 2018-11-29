@@ -5,17 +5,13 @@ import {
 } from 'react-router-dom';
 import NotFound from '../notFound/NotFound';
 import LandingPage from '../landingPage/LandingPage';
-
-const LandingPageContainer = () => (
-  <div className="landing-page-container">
-    <Route exact path="/" component={LandingPage} />
-  </div>
-);
+import Dashboard from '../dashboard/Dashboard';
 
 const Routes = () => (
   <Switch>
-    <Route component={LandingPageContainer} />
-    <Route exact component={NotFound} />
+    <Route exact path="/" component={LandingPage} />
+    <Route exact path="/dashboard" component={Dashboard} />
+    <Route component={NotFound} />
   </Switch>
 );
 

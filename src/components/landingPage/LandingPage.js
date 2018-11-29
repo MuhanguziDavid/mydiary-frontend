@@ -22,7 +22,7 @@ const LandingPage = (props) => (
       </ul>
 
       <div className="tab-content">
-        <div className="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab"><Login /></div>
+        <div className="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab"><Login {...props} /></div>
         <div className="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab"><Register {...props} /></div>
       </div>
     </div>

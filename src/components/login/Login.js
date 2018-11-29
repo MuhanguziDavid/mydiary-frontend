@@ -1,21 +1,79 @@
-import React from 'react';
-import '../../assets/App.css';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { loginUsers } from '../../actions/userActions';
 
-const Login = () => (
-  <div>
-    <h2>Login Here</h2>
-    <form id="login">
-      <div className="inputBox">
-        <input type="text" name="username" id="username" required="required" />
-        <label>Username</label>
-      </div>
-      <div className="inputBox">
-        <input type="password" name="password" id="password" required="required" />
-        <label>Password</label>
-      </div>
-      <button className="btn btn-primary" type="button" onClick="#">Login</button>
-    </form>
-  </div>
-);
+export class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: '',
+    };
+  }
 
-export default (Login);
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.loginSuccess === true) {
+      const { history } = this.props;
+      history.push('/dashboard');
+    }
+  }
+
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+    const {
+      username,
+      password,
+    } = this.state;
+    const payload = {
+      username,
+      password,
+    };
+    const { loginUsers } = this.props;
+    loginUsers(payload);
+  }
+
+  render() {
+    const {
+      username,
+      password,
+    } = this.state;
+    return (
+      <div>
+        <h2>Login Here</h2>
+        <form onSubmit={this.handleSubmit}>
+          <div className="inputBox">
+            <input type="text" name="username" required="required" value={username} onChange={this.handleChange} />
+            <label>Username</label>
+          </div>
+          <div className="inputBox">
+            <input type="password" name="password" required="required" value={password} onChange={this.handleChange} />
+            <label>Password</label>
+          </div>
+          <button className="btn btn-primary" type="submit">Login</button>
+        </form>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  loginSuccess: state.user.loginSuccess,
+});
+
+Login.propTypes = {
+  loginUsers: PropTypes.func.isRequired,
+  loginSuccess: PropTypes.bool,
+  history: PropTypes.object.isRequired,
+};
+
+Login.defaultProps = {
+  loginSuccess: false,
+};
+
+export default connect(mapStateToProps, { loginUsers })(Login);

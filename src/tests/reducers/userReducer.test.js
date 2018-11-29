@@ -1,6 +1,8 @@
 import {
   REGISTER_SUCCESS,
   REGISTER_ERROR,
+  LOGIN_SUCCESS,
+  LOGIN_ERROR,
 } from '../../actions/types';
 import userReducer from '../../reducers/userReducer';
 
@@ -11,6 +13,8 @@ describe('userReducer', () => {
     initialState = {
       registerSuccess: false,
       registerError: false,
+      loginSuccess: false,
+      loginError: false,
     };
   });
 
@@ -39,6 +43,30 @@ describe('userReducer', () => {
     expect(currentState).toEqual({
       ...initialState,
       registerError: action.payload,
+    });
+  });
+
+  it('should set loginSuccess to true when LOGIN_SUCCESS is dispatched', () => {
+    const action = {
+      type: LOGIN_SUCCESS,
+      payload: true,
+    };
+    const currentState = userReducer(initialState, action);
+    expect(currentState).toEqual({
+      ...initialState,
+      loginSuccess: action.payload,
+    });
+  });
+
+  it('should set loginError to true when LOGIN_ERROR is dispatched', () => {
+    const action = {
+      type: LOGIN_ERROR,
+      payload: true,
+    };
+    const currentState = userReducer(initialState, action);
+    expect(currentState).toEqual({
+      ...initialState,
+      loginError: action.payload,
     });
   });
 });

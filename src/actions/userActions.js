@@ -40,4 +40,12 @@ export const loginUsers = (payload) => dispatch => {
     });
 };
 
+export const setLoginToTrue = () => dispatch => {
+  dispatch(loginSuccess(true));
+};
+
+export const setLoginToFalse = () => dispatch => {
+  dispatch(loginSuccess(false));
+};
+
 export default registerUsers;

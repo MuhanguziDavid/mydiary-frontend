@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { loginUsers } from '../../actions/userActions';
+import { loginUsers, setLoginToFalse } from '../../actions/userActions';
 
 export class Login extends Component {
   constructor(props) {
@@ -10,6 +11,11 @@ export class Login extends Component {
       username: '',
       password: '',
     };
+  }
+
+  componentDidMount() {
+    const { setLoginToFalse } = this.props;
+    setLoginToFalse();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -62,12 +68,18 @@ export class Login extends Component {
   }
 }
 
+const matchDispatchToProps = (dispatch) => bindActionCreators({
+  loginUsers,
+  setLoginToFalse,
+}, dispatch);
+
 const mapStateToProps = state => ({
   loginSuccess: state.user.loginSuccess,
 });
 
 Login.propTypes = {
   loginUsers: PropTypes.func.isRequired,
+  setLoginToFalse: PropTypes.func.isRequired,
   loginSuccess: PropTypes.bool,
   history: PropTypes.object.isRequired,
 };
@@ -76,4 +88,4 @@ Login.defaultProps = {
   loginSuccess: false,
 };
 
-export default connect(mapStateToProps, { loginUsers })(Login);
+export default connect(mapStateToProps, matchDispatchToProps)(Login);

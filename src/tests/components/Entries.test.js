@@ -10,9 +10,6 @@ describe('Entries Component', () => {
   const props = {
     history: { push: jest.fn() },
   };
-  const nextProps = {
-    getEntriesError: true,
-  };
 
   beforeEach(() => {
     wrapper = shallow(
@@ -27,15 +24,5 @@ describe('Entries Component', () => {
 
   it('should render correctly', () => {
     expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should not redirect if getEntriesError is false', () => {
-    wrapper.setProps({ getEntriesError: false });
-    expect(props.history.push).toBeCalledTimes(0);
-  });
-
-  it('should redirect to the landingpage if getEntriesError is true', () => {
-    wrapper.setProps({ ...nextProps });
-    expect(props.history.push).toBeCalledWith('/');
   });
 });

@@ -1,4 +1,3 @@
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
   getEntriesSuccess,
@@ -14,7 +13,6 @@ export const fetchEntries = () => dispatch => {
     })
     .catch(() => {
       dispatch(getEntriesError(true));
-      toast.error('Please login', { autoClose: false, hideProgressBar: true });
     });
 };
 

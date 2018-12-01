@@ -14,13 +14,6 @@ export class Entries extends Component {
     setLoginToTrue();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.getEntriesError === true) {
-      const { history } = this.props;
-      history.push('/');
-    }
-  }
-
   render() {
     const { entriesPayload } = this.props;
     return (
@@ -49,15 +42,12 @@ const matchDispatchToProps = (dispatch) => bindActionCreators({
 
 const mapStateToProps = (state) => ({
   entriesPayload: state.entry.entriesPayload,
-  getEntriesError: state.entry.getEntriesError,
 });
 
 Entries.propTypes = {
   fetchEntries: PropTypes.func.isRequired,
   setLoginToTrue: PropTypes.func.isRequired,
   entriesPayload: PropTypes.object.isRequired,
-  getEntriesError: PropTypes.bool.isRequired,
-  history: PropTypes.object.isRequired,
 };
 
 export default connect(

@@ -8,6 +8,7 @@ import './assets/App.css';
 import Footer from './components/footer/Footer';
 import Navbar from './components/navbar/Navbar';
 
+// my own work goes here
 const App = () => (
   <Provider store={store}>
     <BrowserRouter>
